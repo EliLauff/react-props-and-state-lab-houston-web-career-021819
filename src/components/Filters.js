@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
 
 class Filters extends React.Component {
+  //create function to grab value from the input for the func in parent
+  changeType = () => {
+    let animalType = document.getElementById("type").value;
+    this.props.onChangeType(animalType);
+  };
+
   render() {
     return (
       <div className="ui form">
         <h3>Animal type</h3>
         <div className="field">
-          <select name="type" id="type">
+          {/* //set listener "on change" to do what the func above says, use as prop  */}
+          <select name="type" id="type" onChange={this.changeType}>
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>
@@ -15,11 +22,16 @@ class Filters extends React.Component {
         </div>
 
         <div className="field">
-          <button className="ui secondary button">Find pets</button>
+          <button
+            className="ui secondary button"
+            onClick={this.props.onFindPetsClick}
+          >
+            Find pets
+          </button>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Filters
+export default Filters;
